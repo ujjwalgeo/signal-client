@@ -1,0 +1,25 @@
+.login-form {}
+.login-form-logo {}
+.login-form-button {
+  margin-top: 128px;
+  margin-bottom: 32px;
+}
+.login-form-button a {
+  width: 170px !important;
+}
+
+.login-form-forgot-links {
+  height: 16px;
+  vertical-align: middle;
+}
+
+.login-form-forgot-links a {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  text-decoration-line: underline;
+  color: #919191;
+  margin: 12px;
+}

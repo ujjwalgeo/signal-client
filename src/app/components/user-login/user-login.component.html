@@ -1,0 +1,19 @@
+<div class="login-form">
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <div fxLayout="row" fxFlex="100%">
+            <img src="assets/c2s-logo%201.png" class="login-form-logo">
+        </div>
+
+        <div fxLayout="row" fxFlex="100%" class="login-form-button" *ngIf="!isLoggedIn()">
+            <a mat-raised-button color="primary" href="{{ oauthUrl }}">Sign In</a>
+        </div>
+
+        <div fxLayout="row" fxFlex="100%" class="login-form-button" *ngIf="isLoggedIn()">
+            <a mat-raised-button color="primary" (click)="logout()">Sign Out</a>
+        </div>
+
+        <div fxLayout="row" fxFlex="100%" class="login-form-forgot-links" fxLayoutAlign="center center">
+            <a [href]="forgotPasswordUrl" >Forgot password?</a>|<a [href]="signupUrl">Sign Up?</a>
+        </div>
+    </div>
+</div>
