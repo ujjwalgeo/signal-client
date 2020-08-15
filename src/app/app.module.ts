@@ -8,6 +8,11 @@ import { AuthLandingComponent } from './components/auth-landing/auth-landing.com
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {TokenInterceptorService} from './services/token-interceptor.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatIcon, MatIconModule} from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -16,11 +21,16 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     AuthLandingComponent,
     DashboardComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
