@@ -13,13 +13,21 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { LogoutPageComponent } from './components/logout-page/logout-page.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserLoginComponent,
     AuthLandingComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginPageComponent,
+    LogoutPageComponent,
+    HomePageComponent,
+    CategoryMenuComponent
   ],
     imports: [
         BrowserModule,

@@ -54,13 +54,14 @@ export class AuthLandingComponent implements OnInit {
 
   ngOnInit(): void {
     // parseToken is true only if accessToken is returned in callback
+    console.log('auth-landing', this.router.url);
     if (!this.parseToken()) {
       return;
     }
-
     this.api.getUserProfile().subscribe((geoNodeUserProfile) => {
       localStorage.setItem('userProfile', JSON.stringify(geoNodeUserProfile));
-      this.router.navigate(['/dashboard', geoNodeUserProfile.name]);
+      console.log('auth-success', geoNodeUserProfile);
+      this.router.navigate(['/dashboard', geoNodeUserProfile.email]);
     });
   }
 }

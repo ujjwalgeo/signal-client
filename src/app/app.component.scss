@@ -7,3 +7,21 @@
   left: 0;
   right: 0;
 }
+
+mat-sidenav {
+    min-width: 300px !important;
+    width: 300px !important;
+    max-width: 300px !important;
+}
+
+.sidebar-content {
+  width: 100%;
+}
+
+.main {
+  background-color: #f4f7fc;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

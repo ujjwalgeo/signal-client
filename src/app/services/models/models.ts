@@ -6,5 +6,15 @@ export interface GeonodeUser {
     email: string;
     preferred_username: string;
     groups: any;
-    id: number
+    id: number;
+}
+
+export interface Category {
+    name: string;
+    description: string;
+    parent: string;
+    resource_uri: string;
+    children: Category[];
+    id: number;
+    parent_id: number;
 }

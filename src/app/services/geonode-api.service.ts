@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { GeonodeUser } from './models/models';
+import {Category, GeonodeUser} from './models/models';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -34,6 +34,18 @@ export class GeonodeApiService {
           this.handleError<GeonodeUser>('getUserProfile', null)
         )
       );
+  }
+
+  getCategories(): Observable<Category[]> {
+    return this.http.get<any>(environment.signalapi.url + '/api/category')
+        .pipe(
+            map((result) => {
+              return result.objects;
+            }),
+            catchError(
+                this.handleError<Category>('getCategories', null)
+            )
+        );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

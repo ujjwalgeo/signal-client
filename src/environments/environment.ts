@@ -7,7 +7,7 @@
 // const redirectUrl = 'http://localhost:4200/auth-landing&scope=read%20write%20groups';
 
 const geonodeHost = 'http://localhost:8000/';
-const clientId = '9LkyuQ2v8f9nWhN9EqAKUnocFTF520Rq2j9deizE';
+const clientId = '41zCnhu7D9BiDaWwE1LNyl2PpXoeHN8CP40Zer3F';
 const redirectUrl = 'http://localhost:4200/auth-landing&scope=read%20write%20groups';
 
 
