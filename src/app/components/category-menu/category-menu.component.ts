@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {GeonodeApiService} from '../../services/geonode-api.service';
-import {AppStateService} from '../../services/app-state.service';
-import {GeonodeUser, Category} from '../../services/models/models';
+import { GeonodeApiService } from '../../services/geonode-api.service';
+import { AppStateService } from '../../services/app-state.service';
+import { GeonodeUser, Category } from '../../services/models/models';
 import { combineLatest } from 'rxjs';
 
 
@@ -13,45 +13,34 @@ import { combineLatest } from 'rxjs';
 export class CategoryMenuComponent implements OnInit {
 
   public categories: Category[];
-  public nested: Map<number, Category> = new Map<number, Category>();
+  public lookup: Map<number, Category> = new Map<number, Category>();
+  public dashboard: Category;
   public nestedArr: Array<Category> = new Array<Category>();
 
   constructor(private apiService: GeonodeApiService, private appStateService: AppStateService) {
   }
 
-  nestIt(categories: Category[]) {
-    for (const category of categories) {
-      if (category.parent_id === null) {
-        category.children = [];
-        this.nested[category.parent_id] = category;
-        continue;
-      }
-      if (this.nested.has(category.parent_id)) {
-        this.nested.get(category.parent_id).children.push(category);
-      } else {
-        let parent: Category = null;
-        for (const cat of categories) {
-          if (cat.id === category.parent_id) {
-            parent = cat;
-            parent.children = [];
-          }
-        }
-        this.nested[category.parent_id] = parent;
-        parent.children.push(category);
-      }
-    }
-  }
-
   getCategories() {
     this.apiService.getCategories().subscribe((categories) => {
       this.categories = categories;
-      console.log(categories);
-      this.nestIt(categories);
-      console.log(this.nested);
-      for (const key of this.nested.keys()) {
-        this.nestedArr.push(this.nested.get(key));
+      this.lookup = new Map<number, Category>();
+      let root: Category;
+      for (const cat of categories) {
+        if (cat.parent_id === null) {
+          root = cat;
+        }
+        this.lookup.set(cat.id, cat);
+        if (!cat.children) {
+          cat.children = new Array<Category>();
+        }
       }
-      console.log(this.nestedArr);
+      for (const cat of categories) {
+        if (cat.parent_id) {
+          const parent = this.lookup.get(cat.parent_id);
+          parent.children.push(cat);
+        }
+      }
+      this.dashboard = root;
     });
   }
 

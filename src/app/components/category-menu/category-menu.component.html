@@ -1,5 +1,15 @@
-<ul class="sidebar-nav">
-    <li class="sidebar-header" *ngFor="let parent of categories">
-        {{ parent.name }}
+<ul class="sidebar-nav" *ngIf="dashboard && dashboard.children">
+    <li class="sidebar-header" *ngFor="let item1 of dashboard.children">
+        {{ item1.name }}
+        <ul *ngIf="item1.children && item1.children.length">
+            <li class="sidebar-header" *ngFor="let item2 of item1.children">
+                {{ item2.name }}
+                <ul *ngIf="item2.children && item2.children.length">
+                    <li class="sidebar-header" *ngFor="let item3 of item2.children">
+                        {{ item3.name }}
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </li>
 </ul>
