@@ -14,7 +14,8 @@ export const environment = {
         '&response_type=token&state=random_state_string&' +
         'redirect_uri=' + redirectUrl,
       clientId: 'Fv10rMeOGcXMdZubBogL2sP9AyQf6mIN7RARGWhw'
-    }
+    },
+    api: geonodeHost + 'api'
   },
   signalapi: {
     url: geonodeHost + 'signalapi'
