@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AppStateService} from '../../services/app-state.service';
 import {GeonodeApiService} from '../../services/geonode-api.service';
 import {GroupProfile} from '../../services/models/models';
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-project-selector',
@@ -31,6 +32,7 @@ export class ProjectSelectorComponent implements OnInit {
           if (this.groups.size > 0) {
             this.groupsArray = Array.from(this.groups.values());
             this.selectedGroup = this.groupsArray[0];
+            this.selectedGroup.logo_url = environment.geonode.host + this.selectedGroup.logo_url.substr(1);
           }
         });
       }
