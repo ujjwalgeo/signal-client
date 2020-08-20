@@ -1,0 +1,5 @@
+<div class="sidebar-user" *ngIf="selectedGroup">
+    <img [src]="selectedGroup.logo_url" class="img-fluid rounded-circle mb-2" [alt]="selectedGroup.slug"/>
+    <div class="font-weight-bold">{{ selectedGroup.title }}</div>
+    <small>{{ selectedGroup.description }}</small>
+</div>

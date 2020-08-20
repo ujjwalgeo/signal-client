@@ -22,7 +22,12 @@ export class CategoryMenuComponent implements OnInit {
 
   getCategories() {
     this.apiService.getCategories().subscribe((categories) => {
-      this.categories = categories;
+      if (!categories) {
+        return;
+      }
+      this.categories = categories.sort((a, b) => {
+        return a.weight - b.weight;
+      });
       this.lookup = new Map<number, Category>();
       let root: Category;
       for (const cat of categories) {
@@ -52,10 +57,13 @@ export class CategoryMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.apiService.getUserProfile().subscribe((profile) => {
-      if (profile) {
-        this.getCategories();
-      }
+    const userProfile = this.appStateService.userProfile$.getValue();
+    if (userProfile) {
+      this.getCategories();
+    }
+    this.appStateService.userProfile$.subscribe((up) => {
+      console.log(up);
+      this.getCategories();
     });
   }
 }

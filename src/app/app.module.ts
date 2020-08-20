@@ -17,6 +17,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { LogoutPageComponent } from './components/logout-page/logout-page.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
+import { ProjectSelectorComponent } from './components/project-selector/project-selector.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CategoryMenuComponent } from './components/category-menu/category-menu.
     LoginPageComponent,
     LogoutPageComponent,
     HomePageComponent,
-    CategoryMenuComponent
+    CategoryMenuComponent,
+    ProjectSelectorComponent
   ],
     imports: [
         BrowserModule,

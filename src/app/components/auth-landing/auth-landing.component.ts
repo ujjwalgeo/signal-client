@@ -45,7 +45,6 @@ export class AuthLandingComponent implements OnInit {
         scope: params.scope,
         state: params.state,
       };
-      console.log(accessTokenData);
       localStorage.setItem('accessToken', accessTokenData.access_token);
       return true;
     }
@@ -60,7 +59,7 @@ export class AuthLandingComponent implements OnInit {
     }
     this.api.getUserProfile().subscribe((geoNodeUserProfile) => {
       localStorage.setItem('userProfile', JSON.stringify(geoNodeUserProfile));
-      console.log('auth-success', geoNodeUserProfile);
+      this.appState.userProfile$.next(geoNodeUserProfile);
       this.router.navigate(['/dashboard', geoNodeUserProfile.email]);
     });
   }

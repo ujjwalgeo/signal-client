@@ -1,14 +1,26 @@
 <ul class="sidebar-nav" *ngIf="dashboard && dashboard.children">
-    <li class="sidebar-header" *ngFor="let item1 of dashboard.children">
-        {{ item1.name }}
-        <ul *ngIf="item1.children && item1.children.length">
-            <li class="sidebar-header" *ngFor="let item2 of item1.children">
-                {{ item2.name }}
-                <ul *ngIf="item2.children && item2.children.length">
-                    <li class="sidebar-header" *ngFor="let item3 of item2.children">
-                        {{ item3.name }}
+    <li class="sidebar-header">
+        Dashboard
+    </li>
+    <li class="sidebar-item" *ngFor="let item1 of dashboard.children">
+        <a class="sidebar-link">
+            <i class="align-middle mr-2 fas fa-fw fa-home"></i>
+            <span class="align-middle">{{ item1.name }}</span>
+        </a>
+        <ul *ngIf="item1.children && item1.children.length" class="sidebar-dropdown list-unstyled">
+            <li class="sidebar-item" *ngFor="let item2 of item1.children">
+                <a class="sidebar-link">
+                    <i class="align-middle mr-2 fas fa-fw fa-home"></i>
+                    <span class="align-middle">{{ item2.name }}</span>
+                </a>
+                <!-- ul *ngIf="item2.children && item2.children.length"  class="sidebar-dropdown list-unstyled">
+                    <li class="sidebar-item" *ngFor="let item3 of item2.children">
+                        <a class="sidebar-link">
+                            <i class="align-middle mr-2 fas fa-fw fa-home"></i>
+                            <span class="align-middle">{{ item3.name }}</span>
+                        </a>
                     </li>
-                </ul>
+                </ul -->
             </li>
         </ul>
     </li>

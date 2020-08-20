@@ -18,10 +18,8 @@ export class AppStateResolverService implements Resolve<boolean> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    // Block until all projects are loaded
     return combineLatest([
-      // this.appStateService.loadProjectByName(route.paramMap.get('projectName')),
-      this.appStateService.user$,
+      this.appStateService.userProfile$,
     ]).pipe(
       first(),
       map((_) => true)

@@ -17,7 +17,7 @@ const routes: Routes = [
         path: 'dashboard/:userName',
         component: DashboardComponent,
         canActivate: [AuthGuardService],
-        // resolve: {isInitialized: AppStateResolverService},
+        resolve: {isInitialized: AppStateResolverService},
     },
     { path: 'home', component: HomePageComponent },
 ];

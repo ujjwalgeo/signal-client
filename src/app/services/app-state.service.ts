@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, BehaviorSubject } from 'rxjs';
 import { GeonodeUser } from './models/models';
 
 @Injectable({
@@ -7,6 +7,6 @@ import { GeonodeUser } from './models/models';
 })
 export class AppStateService {
 
-  public user$: ReplaySubject<GeonodeUser> = new ReplaySubject<GeonodeUser>(1);
+  public userProfile$: BehaviorSubject<GeonodeUser> = new BehaviorSubject<GeonodeUser>(null);
   constructor() { }
 }

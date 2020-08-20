@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import {Category, GeonodeUser} from './models/models';
+import {Category, GeonodeUser, GroupProfile} from './models/models';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -27,17 +27,34 @@ export class GeonodeApiService {
   }
 
   getUserProfile(): Observable<GeonodeUser> {
-    return this.http
-      .get<GeonodeUser>(environment.signalapi.url + '/user-info')
-      .pipe(
-        catchError(
-          this.handleError<GeonodeUser>('getUserProfile', null)
-        )
-      );
+    if (localStorage.getItem('userProfile')) {
+      const user: GeonodeUser = JSON.parse(localStorage.getItem('userProfile'));
+      return of(user);
+    } else {
+      return this.http
+        .get<GeonodeUser>(environment.signalapi.url + '/user-info')
+        .pipe(
+          catchError(
+            this.handleError<GeonodeUser>('getUserProfile', null)
+          )
+        );
+      }
   }
 
   getCategories(): Observable<Category[]> {
     return this.http.get<any>(environment.signalapi.url + '/api/category')
+        .pipe(
+            map((result) => {
+              return result.objects;
+            }),
+            catchError(
+                this.handleError<Category>('getCategories', null)
+            )
+        );
+  }
+
+  getGroupProfiles(): Observable<GroupProfile[]> {
+    return this.http.get<any> (environment.geonode.api + '/group_profile')
         .pipe(
             map((result) => {
               return result.objects;
