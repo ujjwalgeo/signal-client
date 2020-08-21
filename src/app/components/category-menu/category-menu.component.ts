@@ -57,13 +57,20 @@ export class CategoryMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const userProfile = this.appStateService.userProfile$.getValue();
-    if (userProfile) {
-      this.getCategories();
-    }
-    this.appStateService.userProfile$.subscribe((up) => {
-      console.log(up);
-      this.getCategories();
+    this.apiService.getUserProfile().subscribe((user) => {
+      if (user) {
+        this.getCategories();
+      }
     });
+    this.appStateService.userProfile$.subscribe((up) => {
+      if (up) {
+        this.getCategories();
+      }
+    });
+  }
+
+  select(item: Category) {
+    this.appStateService.selectedCategory$.next(item);
+    console.log(item);
   }
 }

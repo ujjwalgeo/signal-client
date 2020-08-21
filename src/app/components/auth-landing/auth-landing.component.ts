@@ -60,7 +60,6 @@ export class AuthLandingComponent implements OnInit {
     this.api.getUserProfile().subscribe((geoNodeUserProfile) => {
       localStorage.setItem('userProfile', JSON.stringify(geoNodeUserProfile));
       this.appState.userProfile$.next(geoNodeUserProfile);
-      this.router.navigate(['/dashboard', geoNodeUserProfile.email]);
     });
   }
 }

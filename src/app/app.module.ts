@@ -18,6 +18,7 @@ import { LogoutPageComponent } from './components/logout-page/logout-page.compon
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
 import { ProjectSelectorComponent } from './components/project-selector/project-selector.component';
+import { DocDetailComponent } from './components/doc-detail/doc-detail.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ProjectSelectorComponent } from './components/project-selector/project-
     LogoutPageComponent,
     HomePageComponent,
     CategoryMenuComponent,
-    ProjectSelectorComponent
+    ProjectSelectorComponent,
+    DocDetailComponent
   ],
     imports: [
         BrowserModule,

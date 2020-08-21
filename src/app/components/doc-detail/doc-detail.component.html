@@ -1,0 +1,24 @@
+<main class="content">
+    <div class="container-fluid">
+
+        <div class="row" *ngIf="signalDoc">
+            <div class="col-12 d-flex">
+                <div class="card flex-fill">
+                    <div *ngIf="signalDoc.doc_type === 'pdf'">
+                        <object [data]="pdfUrl" type="application/pdf" width="100%" height="600" style="min-height: 600px">
+                            <p>This browser does not support PDFs. Please download the PDF to view it:
+                                <a [href]="pdfUrl">Download PDF</a>.</p>
+                        </object>
+                    </div>
+
+                    <div *ngIf="signalDoc.doc_type === 'chart'">
+                        <iframe width="100%" height="600" style="height: 600px"
+                                [src]="dsChartUrl"
+                                frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

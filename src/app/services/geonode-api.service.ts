@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import {Category, GeonodeUser, GroupProfile} from './models/models';
+import {Category, Collection, GeonodeUser, GroupProfile, SignalDoc} from './models/models';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -60,10 +60,42 @@ export class GeonodeApiService {
               return result.objects;
             }),
             catchError(
-                this.handleError<Category>('getCategories', null)
+                this.handleError<Category>('getGroupProfiles', null)
             )
         );
   }
+
+  getGroupCollections(groupProfile: GroupProfile): Observable<Collection[]> {
+    return this.http.get<any> (environment.signalapi.url + '/api/collection')
+        .pipe(
+            map((result) => {
+              return result.objects;
+            }),
+            catchError(
+                this.handleError<Category>('getGroupCollections', null)
+            )
+        );
+  }
+
+  getCollectionDocs(collection: Collection, category: Category): Observable<SignalDoc[]> {
+      const httpParams = new HttpParams();
+      if (collection) {
+          httpParams.set('collection', String(collection.id));
+      }
+      if (category) {
+          httpParams.set('category', String(category.id));
+      }
+      return this.http.get<any> (environment.signalapi.url + '/api/signaldoc', {params: httpParams})
+        .pipe(
+            map((result) => {
+              return result.objects;
+            }),
+            catchError(
+                this.handleError<Category>('getGroupCollections', null)
+            )
+        );
+  }
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

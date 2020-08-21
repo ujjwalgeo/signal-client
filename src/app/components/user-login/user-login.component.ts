@@ -26,11 +26,14 @@ export class UserLoginComponent implements OnInit {
   }
 
   isLoggedIn(): boolean {
-    return this.geonodeApiService.isAuthenticated();
+    const isAuthenticated = this.geonodeApiService.isAuthenticated();
+    // console.log(isAuthenticated);
+    return isAuthenticated;
   }
 
   logout(): void {
     this.geonodeApiService.logout();
+    this.appStateService.userProfile$.next(null);
     this.router.navigate(['/logout-page']);
   }
 }

@@ -40,3 +40,30 @@ export interface GroupProfile {
     'title': string;
     'title_en': string;
 }
+
+export interface Collection {
+    'end_date': string;
+    'id': number;
+    'name': string;
+    'resource_uri': string;
+    'start_date': string;
+}
+
+export interface GeonodeDoc {
+    'created': string;
+    'doc_url': string;
+    'id': number;
+    'title': string;
+    'owner': any;
+}
+
+export interface SignalDoc {
+    'category': Category;
+    'chart_html': string;
+    'collection': number;
+    'doc': GeonodeDoc;
+    'doc_type': string;
+    'id': number;
+    'resource_uri': string;
+    'title': string;
+}
